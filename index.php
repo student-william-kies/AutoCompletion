@@ -14,15 +14,15 @@
     <body>
     <main>
         <article>
-            <section class="container-fluid">
-                <div class="container d-flex flex-column justify-content-center align-items-center home">
+            <section class="container-fluid home">
+                <div class="container d-flex flex-column justify-content-center align-items-center homeContent">
                     <img src="images/pagani.png" alt="pagani">
                     <h1>PowerCars</h1>
                     <p>Choisissez votre voitures :</p>
                     <div class="justify-content-center align-items-center">
                         <form action="recherche.php" method="get" class="d-flex">
                             <label for="cars">
-                                <input id="cars" name="modele_cars" class="form-control me-2">
+                                <input id="cars" name="modele_cars" class="form-control me-2" autocomplete="off">
                                 <div id="matchList"></div>
                             </label>
                         </form>

@@ -28,47 +28,55 @@ catch (PDOException $e)
 
     <body>
     <header>
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="index.php">
-                    <img src="images/pagani.png" alt="pagani" class="d-inline-block align-text-top">
-                    PowerCars
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <form action="" method="get">
-                    <div class="input-group">
-                        <label for="cars">
-                            <input class="form-control" id="cars" name="modele_cars">
-                            <div id="matchList"></div>
-                        </label>
-                    </div>
-                </form>
-            </nav>
-        </header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.php">
+                <img src="images/pagani.png" alt="pagani" class="d-inline-block align-text-top">
+                PowerCars
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form action="" method="get">
+                <div class="input-group">
+                    <label for="cars">
+                        <input class="form-control" id="cars" name="modele_cars" autocomplete="off">
+                        <div id="matchList"></div>
+                    </label>
+                </div>
+            </form>
+        </nav>
     </header>
 
     <main>
         <article>
-            <section class="container-fluid">
-                <?php
-                if (isset($_GET['modele_cars']))
-                {
-                    $term = htmlspecialchars(trim($_GET['modele_cars']));
-
-                    $query = $pdo -> prepare("SELECT * FROM autocompletion WHERE titre LIKE :title");
-                    $query -> execute([
-                       "title" => '%' . $term . '%'
-                    ]);
-                    $result = $query -> fetchAll();
-
-                    foreach ($result as $key => $value)
+            <section class="container-fluid search">
+                <section class="container searchContent">
+                    <?php
+                    if (isset($_GET['modele_cars']))
                     {
-                        echo ('<a href="element.php?cars=' . $value['id'] . '"><h1>' . $value['titre'] . '</h1><img src="' . $value['photo'] . '" alt="' . $value['titre'] . '"></a>');
+                        $term = htmlspecialchars(trim($_GET['modele_cars']));
+
+                        $query = $pdo -> prepare("SELECT * FROM autocompletion WHERE titre LIKE :title");
+                        $query -> execute([
+                            "title" => '%' . $term . '%'
+                        ]);
+                        $result = $query -> fetchAll();
+
+                        foreach ($result as $key => $value)
+                        {
+                            echo ('
+                            <div class="card bg-dark text-white">
+                              <img src="' . $value['photo'] . '" alt="' . $value['titre'] . '" class="img-thumbnail">
+                              <div class="card-img-overlay">
+                                <h5>' . $value['titre'] . '</h5>
+                                <a href="element.php?cars=' . $value['id'] . '" class="btn btn-danger">+</a>
+                              </div>
+                            </div>
+                            ');
+                        }
                     }
-                }
-                ?>
+                    ?>
+                </section>
             </section>
         </article>
     </main>

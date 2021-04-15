@@ -12,7 +12,7 @@ catch (PDOException $e)
 }
 $term = htmlspecialchars(trim($_GET['modele_cars']));
 
-$query = $pdo -> prepare("SELECT * FROM autocompletion WHERE titre LIKE :term");
+$query = $pdo -> prepare("SELECT * FROM autocompletion WHERE titre LIKE :term LIMIT 10");
 $query -> execute([
     "term" => '%' . $term . '%'
 ]);

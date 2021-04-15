@@ -12,16 +12,17 @@ $('#cars').keyup(function ()
             var str = ""
             for (var i = 0; i < data.length; i++)
             {
-                str = str + '<a style="cursor:pointer;">' + data[i][0]['titre'] + '</a><br />'
+                str = str + '<a href="element.php?cars=' + data[i][0]['id'] + '" class="carsList">' + data[i][0]['titre'] + '</a><br />'
             }
             document.getElementById('matchList').innerHTML = str
         })
     }
 
-    $('#matchList').on('click', 'a', function (e)
-    {
-        e.preventDefault();
-        console.log($(this).text());
-        document.getElementById('cars').value = $(this).text();
-    })
+    /* Permet d'afficher la recherche dans l'input quand on clique dessus */
+    // $('#matchList').on('click', 'a', function (e)
+    // {
+    //     e.preventDefault();
+    //     console.log($(this).text());
+    //     document.getElementById('cars').value = $(this).text();
+    // })
 })

@@ -40,38 +40,36 @@ if (isset($_GET['cars']))
 
     <body>
         <header>
-            <header>
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a class="navbar-brand" href="index.php">
-                        <img src="images/pagani.png" alt="pagani" class="d-inline-block align-text-top">
-                        PowerCars
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <form action="" method="get">
-                        <div class="input-group">
-                            <label for="cars">
-                                <input class="form-control" id="cars" name="modele_cars" autocomplete="off">
-                                <div id="matchList"></div>
-                            </label>
-                        </div>
-                    </form>
-                </nav>
-                <?php
-                if (isset($_GET['modele_cars']))
-                {
-                    $count = "";
-                    $term = htmlspecialchars(trim($_GET['modele_cars']));
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="index.php">
+                    <img src="images/pagani.png" alt="pagani" class="d-inline-block align-text-top">
+                    PowerCars
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <form action="" method="get">
+                    <div class="input-group">
+                        <label for="cars">
+                            <input class="form-control" id="cars" name="modele_cars" autocomplete="off">
+                            <div id="matchList"></div>
+                        </label>
+                    </div>
+                </form>
+            </nav>
+            <?php
+            if (isset($_GET['modele_cars']))
+            {
+                $count = "";
+                $term = htmlspecialchars(trim($_GET['modele_cars']));
 
-                    $query = $pdo -> prepare("SELECT * FROM autocompletion WHERE titre LIKE :title");
-                    $query -> execute([
-                        "title" => '%' . $term . '%'
-                    ]);
-                    header('location:recherche.php?modele_cars=' . $term);
-                }
-                ?>
-            </header>
+                $query = $pdo -> prepare("SELECT * FROM autocompletion WHERE titre LIKE :title");
+                $query -> execute([
+                    "title" => '%' . $term . '%'
+                ]);
+                header('location:recherche.php?modele_cars=' . $term);
+            }
+            ?>
         </header>
 
         <main>

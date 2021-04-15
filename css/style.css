@@ -25,9 +25,17 @@ footer p{
     margin-bottom: -45%;
 }
 
-.home p{
+.home{
+    height: 50vh;
+}
+
+.homeContent p{
     font-family: cursive;
     font-size: 20px;
+}
+
+.navbar{
+    height: 5vh;
 }
 
 .navbar img{
@@ -36,4 +44,17 @@ footer p{
 
 .navbar a{
     font-family: 'Monoton', cursive;
+}
+
+#matchList{
+    background-color: #ffffff;
+}
+
+#matchList a{
+    text-decoration: none;
+    color: #343232;
+}
+
+#matchList a:hover{
+    color: #ff9436;
 }
