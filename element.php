@@ -34,15 +34,16 @@ if (isset($_GET['cars']))
         <!-- Link CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-        <link rel="stylesheet" href="../css/element.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/element.css">
     </head>
 
     <body>
         <header>
             <header>
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a class="navbar-brand" href="../index.php">
-                        <img src="../images/pagani.png" alt="pagani" class="d-inline-block align-text-top">
+                    <a class="navbar-brand" href="index.php">
+                        <img src="images/pagani.png" alt="pagani" class="d-inline-block align-text-top">
                         PowerCars
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +52,8 @@ if (isset($_GET['cars']))
                     <form action="" method="get">
                         <div class="input-group">
                             <label for="cars">
-                                <input class="form-control" id="cars" name="modele_cars">
+                                <input class="form-control" id="cars" name="modele_cars" autocomplete="off">
+                                <div id="matchList"></div>
                             </label>
                         </div>
                     </form>
@@ -88,7 +90,6 @@ if (isset($_GET['cars']))
                         $i++;
                     }
                     ?>
-                    ?>
                 </section>
             </article>
         </main>
@@ -100,6 +101,6 @@ if (isset($_GET['cars']))
 
     <!-- Link JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <script src="../js/jquery-3.6.0.js"></script>
-    <script src="../js/script.js"></script>
+    <script src="js/jquery-3.6.0.js"></script>
+    <script src="js/script.js"></script>
 </html>

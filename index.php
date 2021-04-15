@@ -20,9 +20,10 @@
                     <h1>PowerCars</h1>
                     <p>Choisissez votre voitures :</p>
                     <div class="justify-content-center align-items-center">
-                        <form action="pages/recherche.php" method="get" class="d-flex">
+                        <form action="recherche.php" method="get" class="d-flex">
                             <label for="cars">
                                 <input id="cars" name="modele_cars" class="form-control me-2">
+                                <div id="matchList"></div>
                             </label>
                         </form>
                     </div>

@@ -29,3 +29,11 @@ footer p{
     font-family: cursive;
     font-size: 20px;
 }
+
+.navbar img{
+    width: 5vw;
+}
+
+.navbar a{
+    font-family: 'Monoton', cursive;
+}

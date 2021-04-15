@@ -17,7 +17,13 @@ $query -> execute([
     "term" => '%' . $term . '%'
 ]);
 
-$result = $query -> fetchAll();
+$i = 0;
+$tab = array();
+while( $result = $query -> fetch(PDO::FETCH_ASSOC)){
 
-$carsJSON = json_encode($result);
+    $tab[$i][] = $result;
+    $i++;
+}
+
+$carsJSON = json_encode($tab);
 echo $carsJSON;
