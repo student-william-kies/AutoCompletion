@@ -1,3 +1,17 @@
+<?php
+try
+{
+    $pdo = new PDO('mysql:host=localhost; dbname=autocompletion; charset=utf8', 'root', '', [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+}
+catch (PDOException $e)
+{
+    die("Erreur : " . $e -> getMessage());
+}
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -22,7 +36,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <form action="" method="get" class="ui-widget">
+                <form action="" method="get">
                     <div class="input-group">
                         <label for="cars">
                             <input class="form-control" id="cars" name="modele_cars">
@@ -36,7 +50,23 @@
     <main>
         <article>
             <section class="container-fluid">
+                <?php
+                if (isset($_GET['modele_cars']))
+                {
+                    $term = htmlspecialchars(trim($_GET['modele_cars']));
 
+                    $query = $pdo -> prepare("SELECT * FROM autocompletion WHERE titre LIKE :title");
+                    $query -> execute([
+                       "title" => '%' . $term . '%'
+                    ]);
+                    $result = $query -> fetchAll();
+
+                    foreach ($result as $key => $value)
+                    {
+                        echo ('<a href="element.php?cars=' . $value['id'] . '"><h1>' . $value['titre'] . '</h1><img src="' . $value['photo'] . '" alt="' . $value['titre'] . '"></a>');
+                    }
+                }
+                ?>
             </section>
         </article>
     </main>

@@ -1,3 +1,29 @@
+<?php
+try
+{
+    $pdo = new PDO('mysql:host=localhost; dbname=autocompletion; charset=utf8', 'root', '', [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+}
+catch (PDOException $e)
+{
+    die("Erreur : " . $e -> getMessage());
+}
+
+if (isset($_GET['cars']))
+{
+    $idCars = htmlspecialchars(trim($_GET['cars']));
+
+    $query = $pdo -> prepare("SELECT * FROM autocompletion WHERE id = :id");
+    $query -> execute([
+            "id" => $idCars
+    ]);
+    $result = $query -> fetchAll(PDO::FETCH_ASSOC);
+    $count = $query -> rowCount();
+}
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -22,7 +48,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <form action="" method="get" class="ui-widget">
+                    <form action="" method="get">
                         <div class="input-group">
                             <label for="cars">
                                 <input class="form-control" id="cars" name="modele_cars">
@@ -30,13 +56,39 @@
                         </div>
                     </form>
                 </nav>
+                <?php
+                if (isset($_GET['modele_cars']))
+                {
+                    $count = "";
+                    $term = htmlspecialchars(trim($_GET['modele_cars']));
+
+                    $query = $pdo -> prepare("SELECT * FROM autocompletion WHERE titre LIKE :title");
+                    $query -> execute([
+                        "title" => '%' . $term . '%'
+                    ]);
+                    $result = $query -> fetchAll();
+
+                    foreach ($result as $key => $value)
+                    {
+                        echo ('<a href="element.php?cars=' . $value['id'] . '"><h1>' . $value['titre'] . '</h1><img src="' . $value['photo'] . '" alt="' . $value['titre'] . '"></a>');
+                    }
+                }
+                ?>
             </header>
         </header>
 
         <main>
             <article>
                 <section class="container-fluid">
-
+                    <?php
+                    $i = 0;
+                    while ($i < $count)
+                    {
+                        echo ('<h1>' . $result[$i]['titre'] . '</h1><img src="' . $result[$i]['photo'] . '" alt="' . $result[$i]['titre'] . '">');
+                        $i++;
+                    }
+                    ?>
+                    ?>
                 </section>
             </article>
         </main>
