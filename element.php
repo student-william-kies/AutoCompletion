@@ -68,12 +68,7 @@ if (isset($_GET['cars']))
                     $query -> execute([
                         "title" => '%' . $term . '%'
                     ]);
-                    $result = $query -> fetchAll();
-
-                    foreach ($result as $key => $value)
-                    {
-                        echo ('<a href="element.php?cars=' . $value['id'] . '"><h1>' . $value['titre'] . '</h1><img src="' . $value['photo'] . '" alt="' . $value['titre'] . '"></a>');
-                    }
+                    header('location:recherche.php?modele_cars=' . $term);
                 }
                 ?>
             </header>
@@ -82,14 +77,16 @@ if (isset($_GET['cars']))
         <main>
             <article>
                 <section class="container-fluid">
-                    <?php
-                    $i = 0;
-                    while ($i < $count)
-                    {
-                        echo ('<h1>' . $result[$i]['titre'] . '</h1><img src="' . $result[$i]['photo'] . '" alt="' . $result[$i]['titre'] . '">');
-                        $i++;
-                    }
-                    ?>
+                    <section class="container" id="elementContent">
+                        <?php
+                        $i = 0;
+                        while ($i < $count)
+                        {
+                            echo ('<h1>' . $result[$i]['titre'] . '</h1><img src="' . $result[$i]['photo'] . '" class="img-thumbnail" alt="' . $result[$i]['titre'] . '">');
+                            $i++;
+                        }
+                        ?>
+                    </section>
                 </section>
             </article>
         </main>
