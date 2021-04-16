@@ -42,12 +42,13 @@ footer p{
     width: 5vw;
 }
 
-.navbar a{
+.navbar span{
     font-family: 'Monoton', cursive;
 }
 
 #matchList{
     background-color: #ffffff;
+    position: absolute;
 }
 
 #matchList a{
@@ -57,4 +58,8 @@ footer p{
 
 #matchList a:hover{
     color: #ff9436;
+}
+
+.navbar form{
+    z-index: 1;
 }

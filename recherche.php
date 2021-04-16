@@ -31,7 +31,7 @@ catch (PDOException $e)
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="index.php">
                 <img src="images/pagani.png" alt="pagani" class="d-inline-block align-text-top">
-                PowerCars
+                <span>PowerCars</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,6 +50,12 @@ catch (PDOException $e)
     <main>
         <article>
             <section class="container-fluid search">
+                <?php
+                if (isset($_GET['modele_cars']) && $_GET['modele_cars'] !== "")
+                {
+                    echo ('<div class=""><h1 id="titleSearch">Résultat de votre recherche : "' . $_GET['modele_cars'] . '"</h1></div>');
+                }
+                ?>
                 <section class="container searchContent">
                     <?php
                     if (isset($_GET['modele_cars']))
